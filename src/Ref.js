@@ -85,3 +85,22 @@ function OuterClickExample() {
         </div>
     )
 }
+
+
+export function PreviousState() {
+
+    const [count, setCount] = React.useState(0);
+
+    const prevCountRef = React.useRef();
+
+    React.useEffect(() => {
+        prevCountRef.current = count;
+    }, [count])
+
+    const prevCount = prevCountRef.current;
+
+    return <>
+        <h1>Now : {count} , before : {prevCount}</h1>
+        <button onClick={() => { setCount(count + 1) }}>+</button>
+    </>
+}
